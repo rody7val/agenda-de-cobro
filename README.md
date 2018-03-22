@@ -1,4 +1,4 @@
-Entorno de gestión de aplicaciones de escritorio
+Agenda de cobros
 
 ### Instalación
 ```

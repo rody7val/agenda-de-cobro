@@ -9,7 +9,6 @@ exports.load = (req, res, next, providerId) => {
 			next();
 		}else{
 			res.json({success: false});
-			// next(new Error('No existe userId = '+ userId)) 
 		}
 	});
 }
@@ -29,5 +28,24 @@ exports.new = (req, res) => {
 			success: true,
 			errors: []
 		})
+	});
+}
+
+exports.getOne = (req, res) => {
+	res.json({provider: req.provider});
+}
+
+exports.all = (req, res) => {
+	Provider.find({}).exec((err, providers) => {
+		if (err){
+			return res.json({
+				success: false,
+				err: err
+			});
+		}
+		res.json({
+			success: true,
+			providers: providers
+		});
 	});
 }

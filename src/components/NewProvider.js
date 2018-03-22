@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
-import './NewProvider.css';
+import './css/NewProvider.css';
 
 export default class Counter extends Component {
   constructor(props) {
@@ -95,11 +95,11 @@ export default class Counter extends Component {
     <div>
     {
       this.state.ok ? (
-        <Redirect to='/'/>
+        <Redirect to='/provider'/>
       ) : (
         <div>
           <div className='backButton'>
-            <Link to='/'>
+            <Link to='/provider'>
               <i className='fa fa-arrow-left fa-3x' />
             </Link>
           </div>

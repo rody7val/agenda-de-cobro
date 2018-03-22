@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Counter.css';
+import './css/Counter.css';
 
 export default class Counter extends Component {
 	constructor(props) {
