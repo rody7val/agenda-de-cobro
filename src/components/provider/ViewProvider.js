@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './css/ViewProvider.css';
+import './css/DeleteProvider.css';
 
 export default class Counter extends Component<Props> {
   constructor(props) {
@@ -11,7 +11,7 @@ export default class Counter extends Component<Props> {
     }
   }
 
-	componentWillMount() {
+	componentDidMount() {
     fetch(`http://localhost:8000/provider/${this.props.providerId}`)
     .then((response) => {
       return response.json();
@@ -39,7 +39,7 @@ export default class Counter extends Component<Props> {
         <Link className='btn' to={`/provider/${this.props.providerId}/edit`}>
           <i>Editar</i>
         </Link>
-        <Link className='btn' to="/provider/new">
+        <Link className='btn' to={`/provider/${this.props.providerId}/delete`}>
           <i>Borrar</i>
         </Link>
       </div>

@@ -10,7 +10,8 @@ module.exports = function (express) {
     router.get('/provider', providerController.all);
     router.post('/provider/new', providerController.new);
     router.get('/provider/:providerId', providerController.getOne);
-    // router.get('/item/:itemId', sessionController.loginRequired, itemController.show);
+    router.post('/provider/:providerId/edit', providerController.edit);
+    router.post('/provider/:providerId/delete', providerController.delete);
 
     return router;
 };

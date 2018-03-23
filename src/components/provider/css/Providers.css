@@ -12,8 +12,14 @@
 
 .footerButtons{
 	position: absolute;
-	bottom: 5px;
-	right: 5px;
+	bottom: 10px;
+	right: 10px;
+}
+
+.formFooterButtons{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
 }
 
 .btn {
@@ -43,6 +49,7 @@
 a.btn i {
 	margin-top: 36px;
   display: block;
+  font-style: normal;
 }
 
 .btn:hover {
@@ -50,27 +57,18 @@ a.btn i {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/*.btnPrimary{
-  background-color: #4cf74c;
-}*/
 .btnPrimary:hover{
   background-color: #28a745;
   color: initial;
   border-color: green;
 }
-/*
-.btnWarning{
-  background-color: #ffc107;
-}*/
+
 .btnWarning:hover{
   background-color: #e0a800;
   color: initial;
   border-color: #d2d200;
 }
 
-/*.btnDanger{
-  background-color: #dc3545;
-}*/
 .btnDanger:hover{
   background-color: #c82333;
   color: initial;

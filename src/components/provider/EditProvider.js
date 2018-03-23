@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
-import './css/NewProvider.css';
+// import './css/EditProvider.css';
 
 export default class Counter extends Component {
   constructor(props) {
@@ -15,8 +15,21 @@ export default class Counter extends Component {
       ok: false
     }
 
-    this.submit = this.submit.bind(this)
+    this.edit = this.edit.bind(this)
     this.inputChange = this.inputChange.bind(this)
+  }
+
+	componentWillMount() {
+    fetch(`http://localhost:8000/provider/${this.props.providerId}`)
+    .then((response) => {
+      return response.json();
+    })
+    .then(data => {
+      this.setState({
+      	name: data.provider.name,
+      	email: data.provider.email
+      });
+    });
   }
 
   notify = (msj) => {
@@ -46,7 +59,7 @@ export default class Counter extends Component {
     });
   }
 
-  submit = (e) => {
+  edit = (e) => {
     e.preventDefault();
 
     this.setState({
@@ -61,19 +74,17 @@ export default class Counter extends Component {
       }
     };
 
-    fetch('http://localhost:8000/provider/new', {
+    fetch(`http://localhost:8000/provider/${this.props.providerId}/edit`, {
       method: 'POST',
       body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      }
+      headers: { "Content-Type": "application/json" }
     })
     .then(res => {
       return res.json();
     })
     .then(data => {
       if (data.success) {
-        this.notify('Proveedor creado!');
+        this.notify('Proveedor editado!');
         this.setState({ ok: true });
         return false;
       }
@@ -95,15 +106,16 @@ export default class Counter extends Component {
     <div>
     {
       this.state.ok ? (
-        <Redirect to='/provider'/>
+        <Redirect to={`/provider/${this.props.providerId}`}/>
       ) : (
         <div>
           <div className='backButton'>
-            <Link to='/provider'>
+            <Link to={`/provider/${this.props.providerId}`}>
               <i className='fa fa-arrow-left fa-3x' />
             </Link>
           </div>
-          <form className='form' onSubmit={this.submit}>
+          <form className='form' onSubmit={this.edit}>
+          	<h2>Editar Proveedor</h2>
             <div className='formGroup'>
               <label>Nombre</label>
               <input
@@ -136,7 +148,9 @@ export default class Counter extends Component {
                 ) : null
               }
             </div>
-            <button className='btn'>Crear</button>
+            <div className='formFooterButtons'>
+              <button className='btn'>Editar</button>
+            </div>
           </form>
         </div>
       )

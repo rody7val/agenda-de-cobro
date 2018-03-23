@@ -1,0 +1,17 @@
+.alert{
+	position: relative;
+	top: 70px;
+}
+.alert h2 {
+	display: block;
+	text-align: center;
+}
+.alert h2 i{
+	font-size: 5rem;
+}
+.deleteButtons{
+	text-align: center;
+}
+.deleteButtons form {
+	display: inline-block;
+}
