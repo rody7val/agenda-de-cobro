@@ -75,3 +75,25 @@ a.btn i {
   border-color: #c50000;
 }
 
+.avatarList {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-size: cover;
+  -webkit-box-shadow: 2px 11.5px 46px rgba(0,0,0,.35);
+  box-shadow: 2px 11.5px 46px rgba(0,0,0,.35);
+}
+
+.flex{
+  display: flex;
+}
+
+.flex a {
+  line-height: 50px;
+  margin-left: 10px;
+}
+
+hr {
+  border-color: white;
+  opacity: 0.5;
+}

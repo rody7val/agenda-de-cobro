@@ -4,11 +4,25 @@ const bodyParser = require('body-parser');
 const db = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const multer = require('multer');
 const url = require('url');
 
 const app = electron.app;
 const server = express();
 const BrowserWindow = electron.BrowserWindow;
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, '/../public/uploads'));
+    },
+    filename: (req, file, cb) => {
+        let ext = `.${file.mimetype.replace(/.*\//, '')}`;
+        cb(null, file.fieldname + '-' + Date.now() + ext);
+    }
+});
+
+const upload = multer({ storage: storage });
+server.use(upload.single('img'));
 const api = require('./api/routes')(express);
 
 db.connect('mongodb://localhost/agenda-de-cobro');

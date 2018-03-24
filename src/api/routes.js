@@ -1,5 +1,5 @@
-// Controllers
 const providerController = require('./controllers/provider_controller');
+const imgController = require('./controllers/img_controller');
 
 module.exports = function (express) {
 
@@ -12,6 +12,8 @@ module.exports = function (express) {
     router.get('/provider/:providerId', providerController.getOne);
     router.post('/provider/:providerId/edit', providerController.edit);
     router.post('/provider/:providerId/delete', providerController.delete);
+
+    router.post('/img/upload', imgController.uploadImg);
 
     return router;
 };

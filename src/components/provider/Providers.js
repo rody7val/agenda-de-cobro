@@ -38,9 +38,15 @@ export default class Counter extends Component {
       			this.state.providers.map(provider => {
       				return (
       					<li key={provider._id}>
-      						<Link to={`/provider/${provider._id}`}>
-      							{provider.name}
-      						</Link>
+                  <div className='flex'>
+                    <div
+                      className='avatarList'
+                      style={{backgroundImage: `url(${provider.img})`}}></div>
+      						  <Link to={`/provider/${provider._id}`}>
+      							 {provider.name}
+      						  </Link>
+                  </div>
+                  <hr/>
       					</li>
       				)
       			})

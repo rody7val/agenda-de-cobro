@@ -9,14 +9,43 @@ export default class Counter extends Component {
     super();
     this.state = {
       name: '',
-      email: '',   
+      email: '',
+      cuit: NaN,
+      iva: '',
+      tel: NaN,
+      dir: '',
       err_name: '',
       err_email: '',
+      err_cuit: '',
+      img: '/uploads/default-img.jpeg',
       ok: false
     }
 
     this.submit = this.submit.bind(this)
     this.inputChange = this.inputChange.bind(this)
+    this.imgUpload = this.imgUpload.bind(this)
+  }
+
+  imgUpload = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('img', e.target.files[0]);
+    
+    fetch('http://localhost:8000/img/upload', {
+      method: 'POST',
+      body: formData,
+    })
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      let path = data.path.replace(/\\/g, "/");
+
+      this.setState({
+        img: path.replace(/.*\/public/, '')
+      });
+    });
   }
 
   notify = (msj) => {
@@ -48,6 +77,7 @@ export default class Counter extends Component {
 
   submit = (e) => {
     e.preventDefault();
+    e.stopPropagation();
 
     this.setState({
       err_name: '',
@@ -57,7 +87,12 @@ export default class Counter extends Component {
     let data = {
       provider: {
         name: e.target.name.value, 
-        email: e.target.email.value
+        email: e.target.email.value,
+        iva: e.target.iva.value,
+        cuit: e.target.cuit.value,
+        tel: e.target.tel.value,
+        dir: e.target.dir.value,
+        img: e.target.img.value
       }
     };
 
@@ -103,47 +138,129 @@ export default class Counter extends Component {
               <i className='fa fa-arrow-left fa-3x' />
             </Link>
           </div>
-          <form className='form' onSubmit={this.submit}>
+          <div className='form'>
             <h2>Nuevo Proveedor</h2>
-            <div className='formGroup'>
-              <label>Nombre</label>
+
+            <div className='imgInputUpload'>
+              <div
+                className='avatar'
+                style={{backgroundImage: `url(${this.state.img})`}}></div>
               <input
-                name='name'
-                type='text'
-                placeholder='Nombre'
-                value={this.state.name}
-                onChange={this.inputChange}/>
-              {
-                this.state.err_name ? (
-                  <small className='formText'>
-                    {this.state.err_name}
-                  </small>
-                ) : null
-              }
+                type='file'
+                onChange={this.imgUpload}/>
             </div>
-            <div className='formGroup'>
-              <label>Email</label>
-              <input
-                name='email'
-                type='text'
-                placeholder='Email'
-                value={this.state.email}
-                onChange={this.inputChange}/>
-              {
-                this.state.err_email ? (
-                  <small className='formText'>
-                    {this.state.err_email}
-                  </small>
-                ) : null
-              }
-            </div>
-            <div className='formFooterButtons'>
-              <button className='btn'>Crear</button>
-            </div>
-          </form>
+
+            <form onSubmit={this.submit}>
+              <div className='formGroup'>
+                <label>Nombre/Razón Social</label>
+                <input
+                  name='name'
+                  type='text'
+                  placeholder='Campo obligatorio'
+                  className='formControl'
+                  value={this.state.name}
+                  onChange={this.inputChange}/>
+                {
+                  this.state.err_name ? (
+                    <small className='formText'>
+                      {this.state.err_name}
+                    </small>
+                  ) : null
+                }
+              </div>
+
+              <div className='formGroup'>
+                <label>Email</label>
+                <input
+                  name='email'
+                  type='text'
+                  placeholder='Campo obligatorio'
+                  className='formControl'
+                  value={this.state.email}
+                  onChange={this.inputChange}/>
+                {
+                  this.state.err_email ? (
+                    <small className='formText'>
+                      {this.state.err_email}
+                    </small>
+                  ) : null
+                }
+              </div>
+
+              <div className='formGroup'>
+                <label>CUIL/CUIT</label>
+                <input
+                  name='cuit'
+                  type='number'
+                  placeholder='Campo obligatorio (Sólo números)'
+                  className='formControl full'
+                  value={this.state.cuit}
+                  onChange={this.inputChange}/>
+                {
+                  this.state.err_cuit ? (
+                    <small className='formText'>
+                      {this.state.err_cuit}
+                    </small>
+                  ) : null
+                }
+              </div>
+          
+              <div className='formGroup'>
+                <label>IVA</label>
+                <select
+                  style={{color: this.state.iva == '' ? '#6f6f6f' : '#000'}}
+                  name='iva'
+                  className='formControl full'
+                  value={this.state.iva}
+                  onChange={this.inputChange}>
+                  <option selected disabled value="">Seleccionar una opción</option>
+                  <option style={{color: '#111'}} value="Responsable Inscripto">Responsable Inscripto</option>
+                  <option style={{color: '#111'}} value="Monotributista">Monotributista</option>
+                  <option style={{color: '#111'}} value="Consumidor Final">Consumidor Final</option>
+                </select>
+              </div>
+
+              <div className='formGroup'>
+                <label>Teléfono</label>
+                <input
+                  name='tel'
+                  type='number'
+                  className='formControl full'
+                  placeholder='Sólo números'
+                  value={this.state.tel}
+                  onChange={this.inputChange}/>
+              </div>
+
+              <div className='formGroup'>
+                <label>Dirección</label>
+                <input
+                  name='dir'
+                  type='text'
+                  className='formControl full'
+                  placeholder='Ej: Av. Pueyrredon 747, Buenos Aires, Argentina.'
+                  value={this.state.dir}
+                  onChange={this.inputChange}/>
+              </div>
+
+              <div className='none'>
+                <label>Img</label>
+                <input
+                  name='img'
+                  type='text'
+                  value={this.state.img}
+                  readOnly/>
+              </div>
+
+              <div className='formFooterButtons'>
+                <button className='btn'>Crear</button>
+              </div>
+            
+            </form>
+          </div>
         </div>
       )
     }
+
     </div>
     );
   }

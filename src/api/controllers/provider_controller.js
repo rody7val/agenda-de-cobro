@@ -3,7 +3,7 @@ const Provider = require('../models/provider');
 exports.load = (req, res, next, providerId) => {
 	Provider.findOne({
 		_id: providerId
-	}).exec(function (err, provider){
+	}).exec((err, provider) => {
 		if (provider) {
 			req.provider = provider;
 			next();
@@ -53,6 +53,11 @@ exports.all = (req, res) => {
 exports.edit = (req, res) => {
 	req.provider.name = req.body.provider.name;
 	req.provider.email = req.body.provider.email;
+	req.provider.iva = req.body.provider.iva;
+	req.provider.cuit = req.body.provider.cuit;
+	req.provider.tel = req.body.provider.tel;
+	req.provider.dir = req.body.provider.dir;
+	req.provider.img = req.body.provider.img;
 
 	req.provider.save(err => {
 		if (err) {

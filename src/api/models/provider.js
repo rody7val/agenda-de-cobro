@@ -18,6 +18,22 @@ const ProviderSchema = new Schema({
             return !(!email.match(/.+\@.+\..+/));
         }, 'El "Email" es incorrecto.']
     },
+    cuit: {
+        type: Number,
+        index: {unique: true},
+        validate: [function(cuit){
+            return typeof cuit === "number";
+        }, 'El "CUIL/CUIT" debe ser sólamente un número, sin guiones (-) ni nada..']
+    },
+    iva: {
+        type: String
+    },
+    tel: {
+        type: Number
+    },
+    dir: {
+        type: String
+    },
     img: {
         type: String
     },
