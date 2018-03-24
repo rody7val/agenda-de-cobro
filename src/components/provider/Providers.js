@@ -31,27 +31,29 @@ export default class Counter extends Component {
         </Link>
       </div>
 
-      <div className='containerList'>
+      <div className='content list'>
         <h2>Proveedores</h2>
-      	<ul>
-      		{
-      			this.state.providers.map(provider => {
-      				return (
-      					<li key={provider._id}>
-                  <div className='flex'>
-                    <div
-                      className='avatarList'
-                      style={{backgroundImage: `url(${provider.img})`}}></div>
-      						  <Link to={`/provider/${provider._id}`}>
-      							 {provider.name}
-      						  </Link>
-                  </div>
-                  <hr/>
-      					</li>
-      				)
-      			})
-      		}
-      	</ul>
+        <div className='fluid'>
+        	<ul>
+        		{
+        			this.state.providers.map(provider => {
+        				return (
+        					<li key={provider._id}>
+                    <div className='flex'>
+                      <div
+                        className='avatarList'
+                        style={{backgroundImage: `url(${provider.img})`}}></div>
+        						  <Link to={`/provider/${provider._id}`}>
+        							 {provider.name}
+        						  </Link>
+                    </div>
+                    <hr/>
+        					</li>
+        				)
+        			})
+        		}
+        	</ul>
+        </div>
       </div>
       
 		  <div className='footerButtons'>

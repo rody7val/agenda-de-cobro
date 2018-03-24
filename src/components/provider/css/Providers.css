@@ -1,13 +1,7 @@
-.containerList{
+.containerList {
   position: absolute;
   top: 80px;
   left: 30px;
-}
-
-.containerList a {
-  font-size: 1.4rem;
-  display: block;
-  text-align: left;
 }
 
 .footerButtons{

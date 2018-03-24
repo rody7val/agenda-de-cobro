@@ -140,7 +140,7 @@ export default class Counter extends Component {
           </div>
           <div className='form'>
             <h2>Nuevo Proveedor</h2>
-
+            <div className='fluidForm'>
             <div className='imgInputUpload'>
               <div
                 className='avatar'
@@ -208,7 +208,7 @@ export default class Counter extends Component {
               <div className='formGroup'>
                 <label>IVA</label>
                 <select
-                  style={{color: this.state.iva == '' ? '#6f6f6f' : '#000'}}
+                  style={{color: this.state.iva === '' ? '#6f6f6f' : '#000'}}
                   name='iva'
                   className='formControl full'
                   value={this.state.iva}
@@ -254,8 +254,9 @@ export default class Counter extends Component {
               <div className='formFooterButtons'>
                 <button className='btn'>Crear</button>
               </div>
-            
+              <br/>
             </form>
+            </div>
           </div>
         </div>
       )

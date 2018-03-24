@@ -31,21 +31,23 @@ export default class Counter extends Component<Props> {
         </Link>
     	  <small>{this.state.err}</small>
       </div>
-      <div className='containerView'>
-        <div className='flex'>
-          <div
-            className='avatar'
-            style={{backgroundImage: `url(${this.state.provider.img})`}}></div>
-          <div style={{display: 'block'}}>
-    		    <h2>{this.state.provider.name}</h2>
-    		    <p>{this.state.provider.email}</p>
-            <small><i>{this.state.provider.iva}</i></small>
+      <div className='content'>
+        <div className='fluid'>
+          <div className='flex' style={{padding: '30px'}}>
+            <div
+              className='avatar'
+              style={{backgroundImage: `url(${this.state.provider.img})`}}></div>
+            <div style={{display: 'block'}}>
+    		      <h2>{this.state.provider.name}</h2>
+    		      <p>{this.state.provider.email}</p>
+              <small><i>{this.state.provider.iva}</i></small>
+            </div>
           </div>
+          <br/>
+          <p><b>CUIL/CUIT:</b> <span className='number'>{this.state.provider.cuit}</span></p>
+          <p><b>TELÉFONO:</b> <span className='number'>{this.state.provider.tel}</span></p>
+          <p><b>DIRECCIÓN:</b> <span className='number'>{this.state.provider.dir}</span></p>
         </div>
-        <br/>
-        <p><b>CUIL/CUIT:</b> <span className='number'>{this.state.provider.cuit}</span></p>
-        <p><b>TELÉFONO:</b> <span className='number'>{this.state.provider.tel}</span></p>
-        <p><b>DIRECCIÓN:</b> <span className='number'>{this.state.provider.dir}</span></p>
     	</div>
       <div className='footerButtons'>
         <Link className='btn' to={`/provider/${this.props.providerId}/edit`}>

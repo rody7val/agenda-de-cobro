@@ -1,9 +1,3 @@
-.containerView{
-  position: absolute;
-  top: 80px;
-  left: 30px;
-}
-
 .avatar {
     -webkit-box-shadow: 2px 11.5px 46px rgba(0,0,0,.35);
     box-shadow: 2px 11.5px 46px rgba(0,0,0,.35);
@@ -16,10 +10,10 @@
 	border-radius: 50%;
 }
 
-.containerView .flex h2 {
+.content .flex h2 {
 	line-height: 62px;
 }
-.containerView .flex p {
+.content .flex p {
 	margin-bottom: 0px
 }
 .number{
