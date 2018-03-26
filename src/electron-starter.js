@@ -34,7 +34,8 @@ server.use('/', api);
 let mainWindow;
 
 const createWindow = () => {
-    mainWindow = new BrowserWindow({width: 800, height: 600});
+    mainWindow = new BrowserWindow({ width: 800, height: 600 });
+
     const startUrl = process.env.ELECTRON_START_URL || url.format({
         pathname: path.join(__dirname, '/../build/index.html'),
         protocol: 'file:',
@@ -42,7 +43,7 @@ const createWindow = () => {
     });
 
     mainWindow.loadURL(startUrl);
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 
     mainWindow.on('closed', function () {
         mainWindow = null
@@ -51,7 +52,7 @@ const createWindow = () => {
 
 server.listen(8000, (err) => {
     if (err) {
-        console.log(err);
+        console.log(err)
     }
 
     app.on('ready', createWindow);

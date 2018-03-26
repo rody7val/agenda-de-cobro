@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
-// import './css/EditProvider.css';
 
 export default class Counter extends Component {
   constructor(props) {
@@ -61,7 +60,7 @@ export default class Counter extends Component {
       let path = data.path.replace(/\\/g, "/");
 
       this.setState({
-        img: path.replace(/.*\/public/, '')
+        img: path.replace(/.*public\//, '')
       });
     });
   }

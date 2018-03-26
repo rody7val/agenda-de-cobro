@@ -32,8 +32,8 @@ export default class Counter extends Component<Props> {
     	  <small>{this.state.err}</small>
       </div>
       <div className='content'>
-        <div className='fluid'>
-          <div className='flex' style={{padding: '30px'}}>
+        <div className='fluid' style={{padding: '30px'}}>
+          <div className='flex'>
             <div
               className='avatar'
               style={{backgroundImage: `url(${this.state.provider.img})`}}></div>

@@ -1,11 +1,12 @@
-@import '../node_modules/font-awesome/css/font-awesome.css';
+@import "../node_modules/font-awesome/css/font-awesome.css";
 
-html{
+html {
   position: relative;
   height: 100vh;
   background-color: #232c39;
   background-image: linear-gradient(45deg, rgba(0, 216, 255, 0.5) 10%, rgba(0, 1, 127, 0.7));
 }
+
 body {
   position: absolute;
   height: 100%;
@@ -21,6 +22,10 @@ h2 {
   font-weight: bold;
   letter-spacing: -0.025em;
   color: #fff;
+}
+
+p {
+  font-size: 24px;
 }
 
 li {
@@ -39,12 +44,7 @@ a:hover {
   cursor: pointer;
 }
 
-.full{
-  width: calc(100% - 26px)!important
-}
-.none{
-  display: none
-}
+/* Forms */
 
 .formControl {
     display: block;
@@ -68,6 +68,14 @@ a:hover {
     box-shadow: 0 0 0 0.2rem rgba(255,255,255,.25);
 }
 
+.fluidForm{
+  position: relative;
+  overflow-y: auto;
+  height: calc(100vh - 94px);
+}
+
+/* Contents */
+
 .content{
   position: absolute;
   top: 80px;
@@ -78,6 +86,15 @@ a:hover {
 
 .list{
   right: 140px!important;
+}
+
+.avatarList {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-size: cover;
+  -webkit-box-shadow: 2px 11.5px 46px rgba(0,0,0,.35);
+  box-shadow: 2px 11.5px 46px rgba(0,0,0,.35);
 }
 
 .content a {
@@ -93,8 +110,93 @@ a:hover {
 
 }
 
-.fluidForm{
-  position: relative;
-  overflow-y: auto;
-  height: calc(100vh - 94px);
+.flex{
+  display: flex;
+}
+
+.flex a {
+  line-height: 50px;
+  margin-left: 10px;
+}
+
+hr {
+  border-color: white;
+  opacity: 0.5;
+}
+
+.full{
+  width: calc(100% - 26px)!important
+}
+.none{
+  display: none
+}
+
+/* Buttons */
+.btn {
+  font-size: 1.6rem;
+  font-weight: bold;
+  background-color: #fff;
+  border-radius: 50%;
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+  opacity: 0.7;
+  cursor: pointer;
+  font-family: Arial, Helvetica, Helvetica Neue;
+
+    background-color: buttonface;
+    padding: 2px 6px 3px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonface;
+    display: inline-block;
+    text-align: center;
+    color: initial;
+    padding: 0;
+    margin: 0;
+}
+
+a.btn i {
+  margin-top: 36px;
+  display: block;
+  font-style: normal;
+}
+
+.btn:hover {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.btnPrimary:hover{
+  background-color: #28a745;
+  color: initial;
+  border-color: green;
+}
+
+.btnWarning:hover{
+  background-color: #e0a800;
+  color: initial;
+  border-color: #d2d200;
+}
+
+.btnDanger:hover{
+  background-color: #c82333;
+  color: initial;
+  border-color: #c50000;
+}
+
+.backButton {
+  position: absolute;
+}
+
+.footerButtons{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.formFooterButtons{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
 }

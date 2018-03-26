@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router} from 'react-router-dom'
+import { HashRouter as Router} from 'react-router-dom'
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from './components/Home';
-import CounterPage from './components/Counter';
 
 //Provider
 import ProvidersPage from './components/provider/Providers';
@@ -20,18 +19,17 @@ class App extends Component {
       <div>
         <Router>
           <Switch>
-            <Route exact={true} path="/" component={HomePage} />
-            <Route path="/counter" component={CounterPage} />
+            <Route exact path="/" component={HomePage} />
 
-            <Route exact={true} path="/provider" component={ProvidersPage} />
-            <Route path="/provider/new" component={NewProviderPage} />
-            <Route exact={true} path="/provider/:id" render={({match}) => (
+            <Route exact path="/provider" component={ProvidersPage} />
+            <Route exact path="/provider/new" component={NewProviderPage} />
+            <Route exact path="/provider/:id" render={({match}) => (
               <ViewProvidersPage providerId={match.params.id}/>
             )} />
-            <Route exact={true} path="/provider/:id/edit" render={({match}) => (
+            <Route exact path="/provider/:id/edit" render={({match}) => (
               <EditProvidersPage providerId={match.params.id}/>
             )} />
-            <Route exact={true} path="/provider/:id/delete" render={({match}) => (
+            <Route exact path="/provider/:id/delete" render={({match}) => (
               <DeleteProvidersPage providerId={match.params.id}/>
             )} />
           </Switch>

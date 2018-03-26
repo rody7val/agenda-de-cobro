@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './css/Providers.css';
+// import './css/Providers.css';
 
 export default class Counter extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ export default class Counter extends Component {
     }
   }
 
-	componentDidMount() {
+	componentWillMount() {
     fetch('http://localhost:8000/provider')
       .then((response) => {
         return response.json();

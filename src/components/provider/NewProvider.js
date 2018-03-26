@@ -17,7 +17,7 @@ export default class Counter extends Component {
       err_name: '',
       err_email: '',
       err_cuit: '',
-      img: '/uploads/default-img.jpeg',
+      img: 'img/default-img.jpeg',
       ok: false
     }
 
@@ -43,7 +43,7 @@ export default class Counter extends Component {
       let path = data.path.replace(/\\/g, "/");
 
       this.setState({
-        img: path.replace(/.*\/public/, '')
+        img: path.replace(/.*public\//, '')
       });
     });
   }
@@ -81,7 +81,8 @@ export default class Counter extends Component {
 
     this.setState({
       err_name: '',
-      err_email: ''
+      err_email: '',
+      err_cuit: ''
     });
 
     let data = {
@@ -99,9 +100,7 @@ export default class Counter extends Component {
     fetch('http://localhost:8000/provider/new', {
       method: 'POST',
       body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      }
+      headers: { 'Content-Type': 'application/json' }
     })
     .then(res => {
       return res.json();
