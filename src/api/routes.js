@@ -1,4 +1,5 @@
 const providerController = require('./controllers/provider_controller');
+const clientController = require('./controllers/client_controller');
 const entityController = require('./controllers/entity_controller');
 const imgController = require('./controllers/img_controller');
 
@@ -8,6 +9,7 @@ module.exports = function (express) {
 
 	// params
     router.param('providerId', providerController.load);
+    router.param('clientId', clientController.load);
     router.param('entityId', entityController.load);
 
     // providers
@@ -24,6 +26,13 @@ module.exports = function (express) {
     router.get('/entity/:entityId', entityController.getOne);
     router.post('/entity/:entityId/edit', entityController.edit);
     // router.post('/entity/:entityId/delete', entityController.delete);
+
+    // clients
+    router.get('/client', clientController.all);
+    router.post('/client/new', clientController.new);
+    router.get('/client/:clientId', clientController.getOne);
+    router.post('/client/:clientId/edit', clientController.edit);
+    router.post('/client/:clientId/delete', clientController.delete);
 
     // img upload
     router.post('/img/upload', imgController.uploadImg);

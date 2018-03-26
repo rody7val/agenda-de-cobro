@@ -76,6 +76,7 @@ export default class Home extends Component {
         <div className="container">
           <h2>Agenda de cobros</h2>
           <Link to="/provider">Proveedores</Link>
+          <Link to="/client">Clientes</Link>
         </div>
         <div className='containerEntity'>
           <Link to={`/entity/${this.state.entity._id}`}>

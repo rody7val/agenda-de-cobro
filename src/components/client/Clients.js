@@ -7,22 +7,22 @@ export default class Counter extends Component {
   constructor(props) {
     super();
     this.state = {
-      providers: [],
+      clients: [],
       load: "cargando..."
     }
   }
 
 	componentWillMount() {
-    fetch('http://localhost:8000/provider')
+    fetch('http://localhost:8000/client')
       .then((response) => {
         return response.json();
       })
       .then(data => {
         if (data.success) {
-          if (data.providers.length > 0) {
-            this.setState({ providers: data.providers });
+          if (data.clients.length > 0) {
+            this.setState({ clients: data.clients });
           } else {
-            this.setState({ load: 'No hay proveedores' });
+            this.setState({ load: 'No hay clientes' });
           }
         }
       });
@@ -39,19 +39,19 @@ export default class Counter extends Component {
       </div>
 
       <div className='content list'>
-        <h2>Proveedores</h2>
+        <h2>Clientes</h2>
         <div className='fluid'>
         	<ul>
         		{
-        			this.state.providers.length > 0 ? this.state.providers.map(provider => {
+        			this.state.clients.length > 0 ? this.state.clients.map(client => {
         				return (
-        					<li key={provider._id}>
+        					<li key={client._id}>
                     <div className='flex'>
                       <div
                         className='avatarList'
-                        style={{backgroundImage: `url(${provider.img})`}}></div>
-        						  <Link to={`/provider/${provider._id}`}>
-        							 {provider.name}
+                        style={{backgroundImage: `url(${client.img})`}}></div>
+        						  <Link to={`/client/${client._id}`}>
+        							 {client.name}
         						  </Link>
                     </div>
                     <hr/>
@@ -66,7 +66,7 @@ export default class Counter extends Component {
       </div>
       
 		  <div className='footerButtons'>
-      		<Link className='btn' to="/provider/new">
+      		<Link className='btn' to="/client/new">
       			<i className="fa fa-plus" />
       		</Link>
       </div>
