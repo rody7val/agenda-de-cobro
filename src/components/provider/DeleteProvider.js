@@ -13,7 +13,6 @@ export default class Counter extends Component<Props> {
     }
 
     this.delete = this.delete.bind(this);
-    this.notify = this.notify.bind(this);
   }
 
   componentDidMount() {
@@ -38,27 +37,11 @@ export default class Counter extends Component<Props> {
     })
     .then(data => {
       if (data.success) {
-        this.notify('Proveedor borrado!');
+        this.props.notify('Proveedor borrado!');
         this.setState({ ok: true });
         return false;
       }
     });
-  }
-
-  notify = (msj) => {
-    if (!("Notification" in window)) {
-      alert(msj);
-    }
-    else if (Notification.permission === "granted") {
-      new Notification(msj);
-    }
-    else if (Notification.permission !== 'denied') {
-      Notification.requestPermission(function (permission) {
-        if (permission === "granted") {
-          new Notification(msj);
-        }
-      });
-    }
   }
 
   render() {

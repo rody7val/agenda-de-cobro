@@ -48,27 +48,10 @@ export default class Counter extends Component {
     });
   }
 
-  notify = (msj) => {
-    if (!("Notification" in window)) {
-      alert(msj);
-    }
-    else if (Notification.permission === "granted") {
-      new Notification(msj);
-    }
-    else if (Notification.permission !== 'denied') {
-      Notification.requestPermission(function (permission) {
-        if (permission === "granted") {
-          new Notification(msj);
-        }
-      });
-    }
-  }
-
   inputChange = (e) => {
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    console.log(target.type);
 
     this.setState({
       [name]: value
@@ -103,18 +86,18 @@ export default class Counter extends Component {
       headers: { 'Content-Type': 'application/json' }
     })
     .then(res => {
-      return res.json();
+      return res.json()
     })
     .then(data => {
       if (data.success) {
-        this.notify('Proveedor creado!');
-        this.setState({ ok: true });
-        return false;
+        this.props.notify('Proveedor creado!')
+        this.setState({ ok: true })
+        return false
       }
 
       for(let prop in data.errors) {
         console.log('err_' + prop, data.errors[prop].message)
-        let propErr = 'err_' + prop;
+        let propErr = 'err_' + prop
         this.setState({
           [propErr]: data.errors[prop].message
         })

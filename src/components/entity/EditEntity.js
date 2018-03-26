@@ -26,19 +26,19 @@ export default class Counter extends Component {
   }
 
 	componentWillMount() {
-    fetch(`http://localhost:8000/provider/${this.props.providerId}`)
+    fetch(`http://localhost:8000/entity/${this.props.entityId}`)
     .then((response) => {
       return response.json();
     })
     .then(data => {
       this.setState({
-      	name: data.provider.name,
-      	email: data.provider.email,
-        cuit: data.provider.cuit,
-        iva: data.provider.iva,
-        tel: data.provider.tel,
-        dir: data.provider.dir,
-        img: data.provider.img
+      	name: data.entity.name,
+      	email: data.entity.email,
+        cuit: data.entity.cuit,
+        iva: data.entity.iva,
+        tel: data.entity.tel,
+        dir: data.entity.dir,
+        img: data.entity.img
       });
     });
   }
@@ -85,7 +85,7 @@ export default class Counter extends Component {
     });
 
     let data = {
-      provider: {
+      entity: {
         name: e.target.name.value, 
         email: e.target.email.value,
         iva: e.target.iva.value,
@@ -96,7 +96,7 @@ export default class Counter extends Component {
       }
     };
 
-    fetch(`http://localhost:8000/provider/${this.props.providerId}/edit`, {
+    fetch(`http://localhost:8000/entity/${this.props.entityId}/edit`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" }
@@ -106,7 +106,7 @@ export default class Counter extends Component {
     })
     .then(data => {
       if (data.success) {
-        this.props.notify('Proveedor editado!')
+        this.props.notify('Entidad editada!')
         this.setState({ ok: true })
         return false
       }
@@ -128,16 +128,16 @@ export default class Counter extends Component {
     <div>
     {
       this.state.ok ? (
-        <Redirect to={`/provider/${this.props.providerId}`}/>
+        <Redirect to={`/entity/${this.props.entityId}`}/>
       ) : (
         <div>
           <div className='backButton'>
-            <Link to={`/provider/${this.props.providerId}`}>
+            <Link to={`/entity/${this.props.entityId}`}>
               <i className='fa fa-arrow-left fa-3x' />
             </Link>
           </div>
           <div className='form'>
-            <h2>Editar Proveedor</h2>
+            <h2>Editar {this.state.name}</h2>
             <div className='fluidForm'>
             <div className='imgInputUpload'>
               <div
@@ -206,7 +206,7 @@ export default class Counter extends Component {
               <div className='formGroup'>
                 <label>IVA</label>
                 <select
-                  style={{color: this.state.iva == '' ? '#6f6f6f' : '#000'}}
+                  style={{color: this.state.iva === '' ? '#6f6f6f' : '#000'}}
                   name='iva'
                   className='formControl full'
                   value={this.state.iva}
