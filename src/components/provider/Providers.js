@@ -1,9 +1,10 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import GoBack from '../utils/GoBack'
 // import './css/Providers.css';
 
-export default class Counter extends Component {
+export default class Providers extends Component {
   constructor(props) {
     super();
     this.state = {
@@ -32,10 +33,12 @@ export default class Counter extends Component {
 
     return (
     <div>
-      <div className='backButton'>
-        <Link to='/'>
-          <i className='fa fa-arrow-left fa-3x' />
-        </Link>
+      <GoBack href='/' />
+      
+      <div className='footerButtons'>
+          <Link className='btn' to="/provider/new">
+            <i className="fa fa-plus" />
+          </Link>
       </div>
 
       <div className='content list'>
@@ -63,12 +66,6 @@ export default class Counter extends Component {
         		}
         	</ul>
         </div>
-      </div>
-      
-		  <div className='footerButtons'>
-      		<Link className='btn' to="/provider/new">
-      			<i className="fa fa-plus" />
-      		</Link>
       </div>
     </div>
     );

@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import GoBack from '../utils/GoBack'
 // import './css/DeleteProvider.css';
 
 export default class Counter extends Component<Props> {
@@ -25,13 +26,17 @@ export default class Counter extends Component<Props> {
 
     return (
     <div>
-      <div className='backButton'>
-        <Link to='/'>
-          <i className='fa fa-arrow-left fa-3x' />
+
+      <GoBack href='/' />
+
+      <div className='footerButtons' style={{zIndex: 1}}>
+        <Link className='btn' to={`/entity/${this.props.entityId}/edit`}>
+          <i>Editar</i>
         </Link>
       </div>
+
       <div className='content'>
-        <div className='fluid' style={{padding: '30px'}}>
+        <div className='fluid' style={{padding: '30px;', zIndex: 0}}>
           <div className='flex'>
             <div
               className='avatar'
@@ -48,11 +53,6 @@ export default class Counter extends Component<Props> {
           <p><b>DIRECCIÓN:</b> <span className='number'>{this.state.entity.dir}</span></p>
         </div>
     	</div>
-      <div className='footerButtons'>
-        <Link className='btn' to={`/entity/${this.props.entityId}/edit`}>
-          <i>Editar</i>
-        </Link>
-      </div>
     </div>
     );
   }

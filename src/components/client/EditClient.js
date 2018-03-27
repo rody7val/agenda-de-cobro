@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
+import GoBack from '../utils/GoBack';
 
 export default class Counter extends Component {
   constructor(props) {
@@ -131,11 +132,9 @@ export default class Counter extends Component {
         <Redirect to={`/client/${this.props.clientId}`}/>
       ) : (
         <div>
-          <div className='backButton'>
-            <Link to={`/client/${this.props.clientId}`}>
-              <i className='fa fa-arrow-left fa-3x' />
-            </Link>
-          </div>
+          
+          <GoBack href={`/client/${this.props.clientId}`} />
+
           <div className='form'>
             <h2>Editar Cliente</h2>
             <div className='fluidForm'>

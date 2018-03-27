@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
+import GoBack from '../utils/GoBack';
 // import './css/ViewProvider.css';
 
 export default class Counter extends Component<Props> {
@@ -52,6 +53,9 @@ export default class Counter extends Component<Props> {
             <Redirect to='/client'/>
           ) : (
             <div>
+              
+              <GoBack href={`/client/${this.props.clientId}`} />
+
               <div className='backButton'>
                 <Link to='/client'>
                   <i className='fa fa-arrow-left fa-3x' />
