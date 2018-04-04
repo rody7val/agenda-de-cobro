@@ -11,15 +11,21 @@ import EditProvidersPage from './components/provider/EditProvider';
 import DeleteProvidersPage from './components/provider/DeleteProvider';
 
 //Client
-import ClientsPage from './components/client/Clients';
-import ViewClientPage from './components/client/ViewClient';
-import NewClientPage from './components/client/NewClient';
-import EditClientPage from './components/client/EditClient';
-import DeleteClientPage from './components/client/DeleteClient'
+// import ClientsPage from './components/client/Clients';
+// import ViewClientPage from './components/client/ViewClient';
+// import NewClientPage from './components/client/NewClient';
+// import EditClientPage from './components/client/EditClient';
+// import DeleteClientPage from './components/client/DeleteClient'
 
-//Entities
+//Entitie
 import ViewEntityPage from './components/entity/ViewEntity';
 import EditEntityPage from './components/entity/EditEntity';
+
+//Pago
+import PagosPage from './components/pago/Pagos';
+import NewPagoPage from './components/pago/NewPago';
+
+// import EditPagoPage from './components/pago/EditEntity';
 
 import './App.css';
 
@@ -72,27 +78,6 @@ class App extends Component {
                 providerId={match.params.id}/>
             )} />
 
-            <Route exact path="/client" component={ClientsPage} />
-            <Route exact path="/client/new" render={() => (
-              <NewClientPage
-                notify={this.notify}/>
-            )} />
-            <Route exact path="/client/:id" render={({match}) => (
-              <ViewClientPage
-                clientId={match.params.id}/>
-            )} />
-            <Route exact path="/client/:id/edit" render={({match}) => (
-              <EditClientPage
-                notify={this.notify}
-                clientId={match.params.id}/>
-            )} />
-            <Route exact path="/client/:id/delete" render={({match}) => (
-              <DeleteClientPage
-                notify={this.notify}
-                clientId={match.params.id}/>
-            )} />
-
-
             <Route exact path="/entity/:id" render={({match}) => (
               <ViewEntityPage
                 entityId={match.params.id}/>
@@ -102,6 +87,12 @@ class App extends Component {
                 notify={this.notify}
                 entityId={match.params.id}/>
             )} />
+
+            <Route exact path="/pago" component={PagosPage} />
+            <Route exact path="/pago/new" render={() => (
+              <NewPagoPage
+                notify={this.notify}/>
+            )} />
           </Switch>
         </Router>
       </div>
@@ -110,3 +101,24 @@ class App extends Component {
 }
 
 export default App;
+
+
+            // <Route exact path="/client" component={ClientsPage} />
+            // <Route exact path="/client/new" render={() => (
+            //   <NewClientPage
+            //     notify={this.notify}/>
+            // )} />
+            // <Route exact path="/client/:id" render={({match}) => (
+            //   <ViewClientPage
+            //     clientId={match.params.id}/>
+            // )} />
+            // <Route exact path="/client/:id/edit" render={({match}) => (
+            //   <EditClientPage
+            //     notify={this.notify}
+            //     clientId={match.params.id}/>
+            // )} />
+            // <Route exact path="/client/:id/delete" render={({match}) => (
+            //   <DeleteClientPage
+            //     notify={this.notify}
+            //     clientId={match.params.id}/>
+            // )} />

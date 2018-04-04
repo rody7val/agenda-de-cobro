@@ -14,13 +14,17 @@ export default class GoBack extends Component {
     this.keyPress = this.keyPress.bind(this)
   }
 
-  componentDidMount() {
-    document.body.addEventListener("keyup", this.keyPress);
-  }
+  // componentDidMount() {
+  //   if (!this.state.keyup) {
+  //     document.body.addEventListener("keyup", this.keyPress);
+  //   }
+  // }
 
-  componentWillUnmount() {
-    document.body.removeEventListener("keyup", this.keyPress);
-  }
+  // componentWillUnmount() {
+  //   if (!this.state.keyup) {
+  //     document.body.removeEventListener("keyup", this.keyPress);
+  //   }
+  // }
 
   keyPress = (e) => {
     console.log(e.keyCode);

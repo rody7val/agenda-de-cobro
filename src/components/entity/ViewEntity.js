@@ -36,7 +36,7 @@ export default class Counter extends Component<Props> {
       </div>
 
       <div className='content'>
-        <div className='fluid' style={{padding: '30px;', zIndex: 0}}>
+        <div className='fluid'>
           <div className='flex'>
             <div
               className='avatar'

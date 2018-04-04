@@ -72,7 +72,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-      
+
         <div className='containerEntity'>
           <Link to={`/entity/${this.state.entity._id}`}>
             <div
@@ -86,11 +86,8 @@ export default class Home extends Component {
         <div className="container">
           <h2>Agenda de cobros</h2>
           <br />
-          <Link to="/client">Clientes</Link>
           <Link to="/provider">Proveedores</Link>
-          <br />
-          <Link to="/client">Cobros</Link>
-          <Link to="/provider">Pagos</Link>
+          <Link to="/pago">Pagos</Link>
         </div>
 
       </div>

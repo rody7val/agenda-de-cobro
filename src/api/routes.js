@@ -1,7 +1,10 @@
 const providerController = require('./controllers/provider_controller');
 const clientController = require('./controllers/client_controller');
 const entityController = require('./controllers/entity_controller');
+
 const imgController = require('./controllers/img_controller');
+
+const pagoController = require('./controllers/pago_controller');
 
 module.exports = function (express) {
 
@@ -11,6 +14,7 @@ module.exports = function (express) {
     router.param('providerId', providerController.load);
     router.param('clientId', clientController.load);
     router.param('entityId', entityController.load);
+    router.param('pagoId', pagoController.load);
 
     // providers
     router.get('/provider', providerController.all);
@@ -27,12 +31,20 @@ module.exports = function (express) {
     router.post('/entity/:entityId/edit', entityController.edit);
     // router.post('/entity/:entityId/delete', entityController.delete);
 
-    // clients
+    // client
     router.get('/client', clientController.all);
     router.post('/client/new', clientController.new);
     router.get('/client/:clientId', clientController.getOne);
     router.post('/client/:clientId/edit', clientController.edit);
     router.post('/client/:clientId/delete', clientController.delete);
+
+    // pago
+    router.get('/pago', pagoController.all);
+    router.post('/pago/new', pagoController.new);
+    router.get('/pago/:pagoId', pagoController.getOne);
+    router.get('/pago/type/:type/', pagoController.findByType);
+    // router.post('/pago/:pagoId/edit', pagoController.edit);
+    // router.post('/pago/:pagoId/delete', pagoController.delete);
 
     // img upload
     router.post('/img/upload', imgController.uploadImg);

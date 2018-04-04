@@ -9,6 +9,7 @@ Agenda de cobros
 ### Instalación
 ```
 git clone https://github.com/rody7val/agenda-de-cobro
+cd agenda-de-cobro
 npm install
 ```
 

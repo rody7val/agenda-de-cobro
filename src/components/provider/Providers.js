@@ -45,20 +45,31 @@ export default class Providers extends Component {
         <h2>Proveedores</h2>
         <div className='fluid'>
         	<ul>
+            <hr/>
+            <li className='li-header'>
+              <div className='flex'>
+                <b className='_ center'>#</b>
+                <b className='name'>Proveedor</b>
+              </div>
+            </li>
+            <hr/>
+
         		{
         			this.state.providers.length > 0 ? this.state.providers.map(provider => {
         				return (
-        					<li key={provider._id}>
-                    <div className='flex'>
-                      <div
-                        className='avatarList'
-                        style={{backgroundImage: `url(${provider.img})`}}></div>
-        						  <Link to={`/provider/${provider._id}`}>
-        							 {provider.name}
-        						  </Link>
-                    </div>
+                  <div key={provider._id}>
+                    <li>
+                    	<Link className='li-hover' to={`/provider/${provider._id}`}>
+                        <div className='flex'>
+                          <div
+                            className='avatarList'
+                            style={{backgroundImage: `url(${provider.img})`, marginLeft: '10px'}}></div>
+                    	  	<p style={{marginLeft: '10px'}} >{provider.name}</p>
+                        </div>
+                      </Link>
+                    </li>
                     <hr/>
-        					</li>
+                  </div>
         				)
         			}) : (
                 <p>{this.state.load}</p>

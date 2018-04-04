@@ -1,0 +1,60 @@
+input, select{
+	display: inline-block;
+	height: 30px!important;
+	font-family: Arial;
+	font-size: 20px;
+	width: auto!important;
+	padding: 0px;
+	margin: 0px;
+}
+select{
+	height: 34px!important;
+}
+
+label {
+	display: block;
+}
+
+.formSearchGroup{
+	display: inline-block;
+	float: left;
+	margin-right: 5px;
+}
+
+.listPago p{
+	margin: 0px;
+	line-height: 51px;
+}
+
+.listPago ._, ._ {
+	min-width: 50px;
+	margin-left: 10px;
+}
+.listPago .name, .name {
+	min-width: 240px;
+	max-width: 240px;
+	margin-left: 10px;
+}
+.listPago .importe {
+	min-width: 100px
+}
+.listPago .state {
+	min-width: 60px
+}
+
+.li-hover{
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+.li-hover:hover{
+	background-color: #333;
+}
+.li-hover:focus{
+	background-color: #333;
+}
+
+.li-header{
+		padding-top: 8px;
+	padding-bottom: 8px;
+	background-color: #003455
+}

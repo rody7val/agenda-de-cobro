@@ -29,7 +29,7 @@ export default class Counter extends Component<Props> {
       <GoBack href='/provider' />
       
       <div className='content'>
-        <div className='fluid' style={{padding: '30px'}}>
+        <div className='fluid'>
           <div className='flex'>
             <div
               className='avatar'
