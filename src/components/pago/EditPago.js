@@ -2,26 +2,55 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
-import GoBack from '../utils/GoBack';
-// import './css/NewProvider.css';
+import GoBack from '../utils/GoBack'
 
 export default class Counter extends Component {
   constructor(props) {
     super();
     this.state = {
-      type: 'Mensual',
-      // date: undefined,
+      type: '',
       desc: '',
-      total: 0.00,
-      state: false,
-      _provider: undefined,
+      total: 0,
+      _provider: '',
       providers: [],
       err__provider: '',
       ok: false
     }
 
-    this.submit = this.submit.bind(this)
-    this.inputChange = this.inputChange.bind(this)
+    this.edit = this.edit.bind(this);
+    this.inputChange = this.inputChange.bind(this);
+    this.getPagoId = this.getPagoId.bind(this);
+    this.getProviders = this.getProviders.bind(this);
+  }
+
+  getProviders = () => {
+    fetch('http://localhost:8000/provider/')
+      .then((response) => {
+        return response.json();
+      })
+      .then(data => {
+        this.setState({ providers: data.providers });
+      });
+  }
+
+	getPagoId() {
+    fetch(`http://localhost:8000/pago/${this.props.pagoId}`)
+    .then((response) => {
+      return response.json();
+    })
+    .then(data => {
+      this.setState({
+      	type: data.pago.type,
+      	desc: data.pago.desc,
+        total: data.pago.total,
+        _provider: data.pago._provider,
+      });
+    });
+  }
+
+	componentWillMount() {
+		this.getProviders();
+		this.getPagoId();
   }
 
   inputChange = (e) => {
@@ -34,60 +63,49 @@ export default class Counter extends Component {
     });
   }
 
-  submit = (e) => {
+  edit = (e) => {
     e.preventDefault();
-    e.stopPropagation();
+		
+		if (this.state._provider) {
+    	this.setState({ err__provider: '' });
 
-    if (this.state._provider) {
-      this.setState({ err__provider: '' });
+    	let data = {
+    	  pago: {
+    	    type: e.target.type.value, 
+    	    desc: e.target.desc.value,
+    	    total: e.target.total.value,
+    	    _provider: e.target._provider.value
+    	  }
+    	};
 
-      let data = {
-        pago: {
-          type: e.target.type.value,
-          desc: e.target.desc.value,
-          total: Number(e.target.total.value),
-          state: true,
-          _provider: e.target._provider.value
-        }
-      };
+    	fetch(`http://localhost:8000/pago/${this.props.pagoId}/edit`, {
+    	  method: 'POST',
+    	  body: JSON.stringify(data),
+    	  headers: { "Content-Type": "application/json" }
+    	})
+    	.then(res => {
+    	  return res.json()
+    	})
+    	.then(data => {
+    	  if (data.success) {
+    	    this.props.notify('Pago editado!')
+    	    this.setState({ ok: true })
+    	    return false
+    	  }
 
-      fetch('http://localhost:8000/pago/new', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .then(res => {
-        return res.json()
-      })
-      .then(data => {
-        if (data.success) {
-          this.props.notify('Proveedor creado!')
-          this.setState({ ok: true })
-          return false
-        }
-        for(let prop in data.errors) {
-          console.log('err_' + prop, data.errors[prop].message)
-          let propErr = 'err_' + prop
-          this.setState({
-            [propErr]: data.errors[prop].message
-          })
-        }
-      });
+    	  for(let prop in data.errors) {
+    	    console.log('err_' + prop, data.errors[prop].message)
+    	    let propErr = 'err_' + prop
+    	    this.setState({
+    	      [propErr]: data.errors[prop].message
+    	    })
+    	  }
+    	});
 
       return false
     }
     
-    this.setState({ err__provider: 'Debes seleccionar un "Proveedor" a quien pagar. Si no hay ninguno, crea uno en la sección de inicio.' });
-  }
-
-  componentWillMount = () => {
-    fetch('http://localhost:8000/provider/')
-      .then((response) => {
-        return response.json();
-      })
-      .then(data => {
-        this.setState({ providers: data.providers });
-      });
+    this.setState({ err__provider: 'Debes seleccionar un "Proveedor" a quien pagar.' });    
   }
 
   render() {
@@ -96,13 +114,14 @@ export default class Counter extends Component {
     <div>
     {
       this.state.ok ? (
-        <Redirect to='/pago'/>
+        <Redirect to={`/pago/${this.props.pagoId}`}/>
       ) : (
         <div>
-          <GoBack href='/pago' />
+          
+          <GoBack href={`/pago/${this.props.pagoId}`} />
           
           <div className='form'>
-            <h2>Nuevo Pago</h2>
+            <h2>Editar Pago</h2>
             <div className='fluidForm'>
 
               <form onSubmit={this.submit}>
@@ -179,7 +198,6 @@ export default class Counter extends Component {
         </div>
       )
     }
-
     </div>
     );
   }

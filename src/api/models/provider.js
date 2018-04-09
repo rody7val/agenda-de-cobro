@@ -37,6 +37,7 @@ const ProviderSchema = new Schema({
     img: {
         type: String
     },
+    _pago: [{ type: Schema.Types.ObjectId, ref: 'Pago' }],
     created: {
         type: Date,
         default: Date.now

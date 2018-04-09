@@ -24,8 +24,9 @@ import EditEntityPage from './components/entity/EditEntity';
 //Pago
 import PagosPage from './components/pago/Pagos';
 import NewPagoPage from './components/pago/NewPago';
+import ViewPagoPage from './components/pago/ViewPago';
+import EditPagoPage from './components/pago/EditPago';
 
-// import EditPagoPage from './components/pago/EditEntity';
 
 import './App.css';
 
@@ -93,6 +94,16 @@ class App extends Component {
               <NewPagoPage
                 notify={this.notify}/>
             )} />
+            <Route exact path="/pago/:id" render={({match}) => (
+              <ViewPagoPage
+                pagoId={match.params.id}/>
+            )} />
+            <Route exact path='/pago/:id/edit' render={({match}) => (
+              <EditPagoPage 
+                notify={this.notify}
+                pagoId={match.params.id}/>
+            )} />
+
           </Switch>
         </Router>
       </div>

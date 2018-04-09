@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import GoBack from '../utils/GoBack'
-// import './css/Providers.css';
+import './css/Providers.css';
 
 export default class Providers extends Component {
   constructor(props) {
@@ -42,18 +42,16 @@ export default class Providers extends Component {
       </div>
 
       <div className='content list'>
-        <h2>Proveedores</h2>
-        <div className='fluid'>
-        	<ul>
-            <hr/>
-            <li className='li-header'>
+        <h2 style={{marginBottom: '35px'}}>Proveedores</h2>
+          <ul>
+            <li className='li-header widthList'>
               <div className='flex'>
                 <b className='_ center'>#</b>
-                <b className='name'>Proveedor</b>
+                <b className='name'>Nombre</b>
               </div>
             </li>
-            <hr/>
 
+            <div className='fluid'>
         		{
         			this.state.providers.length > 0 ? this.state.providers.map(provider => {
         				return (
@@ -75,8 +73,8 @@ export default class Providers extends Component {
                 <p>{this.state.load}</p>
               )
         		}
-        	</ul>
         </div>
+          </ul>
       </div>
     </div>
     );

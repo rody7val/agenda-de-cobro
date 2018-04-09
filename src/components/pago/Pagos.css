@@ -19,6 +19,7 @@ label {
 	display: inline-block;
 	float: left;
 	margin-right: 5px;
+	margin-bottom: 10px;
 }
 
 .listPago p{
@@ -31,15 +32,15 @@ label {
 	margin-left: 10px;
 }
 .listPago .name, .name {
-	min-width: 240px;
-	max-width: 240px;
+	min-width: 100px;
+	width: 100%;
 	margin-left: 10px;
 }
 .listPago .importe {
 	min-width: 100px
 }
 .listPago .state {
-	min-width: 60px
+	min-width: 60px;
 }
 
 .li-hover{

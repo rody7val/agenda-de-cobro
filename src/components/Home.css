@@ -1,4 +1,7 @@
-
+.home{
+  position: relative;
+  right: 160px;
+}
 .avatarHome:hover { 
   -webkit-box-shadow: 2px 11.5px 46px rgba(255,255,255,.35);
   box-shadow: 2px 11.5px 46px rgba(255,255,255,.35);

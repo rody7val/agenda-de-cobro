@@ -102,9 +102,10 @@ export default class Pagos extends Component {
       </div>
 
       <div className='content list'>
-          <h2>Pagos</h2>
+          <h2 style={{ display: "inline-block", float: 'left' }}>Pagos</h2>
           <form>
-            <div className='formSearchGroup'>
+            <div style={{ marginLeft: "10px" }}
+              className='formSearchGroup'>
               <label>de tipo</label>
               <select
                 name='type'
@@ -117,21 +118,20 @@ export default class Pagos extends Component {
                   <option value='Anual'>Anual</option>
               </select>
             </div>
-
           </form>
-          <div className='fluid listPago'>
-            <ul>
-              <hr/>
-              <li className='li-header'>
+
+            <ul className='listPago'>
+              <li className='li-header widthList'>
                 <div className='flex'>
                   <b className='_ center'>#</b>
                   <b className='name'>Proveedor</b>
                   <b className='importe'>Importe</b>
                   <b className='importe'>Tipo</b>
-                  <b className='state center'>Estado</b>
+                  <b className='state center' style={{marginRight: '15px'}}>Estado</b>
                 </div>
               </li>
-              <hr/>
+
+              <div className='fluid listPago'>
               {
                 this.state.pagos.length > 0 ? this.state.pagos.map(pago => {
                   return (
@@ -141,14 +141,14 @@ export default class Pagos extends Component {
                         <div className='flex'>
                           <div
                             className='avatarList _'
-                            style={{backgroundImage: `url('img/default-img.jpeg')`}}></div>
-                          <p style={{textTransform: "uppercase"}}
-                            className='name'>{ pago._provider.name.length >= 16 ? (
-                            `${pago._provider.name.substring(0,18)}...`
-                          ) : (
-                            pago._provider.name
-                          )
-                          }</p>
+                            style={{backgroundImage: `url(${pago._provider.img})`}}></div>
+                          <p 
+                            className='name'
+                            style={{
+                              textOverflow: 'ellipsis',
+                              whiteSpace: 'nowrap',
+                              overflow: 'hidden'
+                            }}>{ pago._provider.name }</p>
                           <p className='importe mono'>$ {pago.total}</p>
                           <p className='importe'>{pago.type}</p>
                           {
@@ -176,8 +176,8 @@ export default class Pagos extends Component {
                   <p>{this.state.load}</p>
                 )
               }
-            </ul>
-          </div>
+              </div>
+          </ul>
 
         </div>
 

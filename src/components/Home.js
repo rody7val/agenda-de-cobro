@@ -58,9 +58,7 @@ export default class Home extends Component {
       })
       .then(data => {
         if (data.success) {
-          console.log(data.entitys[0])
           this.setState({ entity: data.entitys[0] });
-          console.log(this.state.entity)
         }
       });
   }
@@ -88,7 +86,9 @@ export default class Home extends Component {
           <br />
           <Link to="/provider">Proveedores</Link>
           <Link to="/pago">Pagos</Link>
+          <br/>
         </div>
+
 
       </div>
     );

@@ -43,8 +43,8 @@ module.exports = function (express) {
     router.post('/pago/new', pagoController.new);
     router.get('/pago/:pagoId', pagoController.getOne);
     router.get('/pago/type/:type/', pagoController.findByType);
-    // router.post('/pago/:pagoId/edit', pagoController.edit);
-    // router.post('/pago/:pagoId/delete', pagoController.delete);
+    router.post('/pago/:pagoId/edit', pagoController.edit);
+    router.post('/pago/:pagoId/delete', pagoController.delete);
 
     // img upload
     router.post('/img/upload', imgController.uploadImg);

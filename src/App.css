@@ -24,6 +24,14 @@ h2 {
   color: #fff;
 }
 
+h3 {
+  /*margin: 0;*/
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+
 p {
   font-size: 18px;
 }
@@ -78,14 +86,25 @@ a:hover {
 
 .content{
   position: absolute;
-  top: 80px;
+  top: 55px;
   left: 30px;
   right: 30px;
   bottom: 0px;
 }
+.content h2, .content form {
+  display: inline-block;
+}
+.content ul {
+  display: block;
+  margin: 0px;
+}
 
+.fluid.view{
+  /*padding-top: 30px;*/
+  padding-left: 30px
+}
 .list{
-  right: 140px!important;
+  right: 135px!important;
 }
 
 .avatarList {
@@ -106,10 +125,14 @@ a:hover {
 .fluid{
   position: relative;
   overflow-y: auto;
-  width: calc(100% - 30px);
-  padding: 25px;
-  height: calc(100vh - 121px);
+  width: 100%;
+  /*calc(100% - 30px)*/
+  /*padding: 25px;*/
+  height: calc(100vh - 172px);
 
+}
+.widthList{
+  /*width: calc(100% - 30px);*/
 }
 
 .flex{

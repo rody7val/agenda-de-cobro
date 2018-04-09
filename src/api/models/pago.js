@@ -10,6 +10,7 @@ const PagoSchema = new Schema({
 	total: Float,
 	state: Boolean,
 	_provider: { type: Schema.Types.ObjectId, ref: 'Provider' },
+	_motion: [{ type: Schema.Types.ObjectId, ref: 'Motion' }],
     created: {
         type: Date,
         default: Date.now

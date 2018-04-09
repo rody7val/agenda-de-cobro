@@ -36,7 +36,7 @@ export default class Counter extends Component<Props> {
       </div>
 
       <div className='content'>
-        <div className='fluid'>
+        <div className='fluid view'>
           <div className='flex'>
             <div
               className='avatar'
